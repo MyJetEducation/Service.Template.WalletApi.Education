@@ -1,0 +1,22 @@
+{
+  "author": "MyJetWallet",
+  "classifications": [ "MyJetWalletApi" ],
+  "name": "MyJetWalletApi",
+  "identity": "MyJetWalletApi",
+  "shortName": "myjetwalletapi",
+  "preferNameDirectory": "true",
+  "tags": {
+    "language": "C#"
+  },
+  "sourceName": "Example",
+  "symbols": {
+    "clientSecretsId": {
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "user-secrets-id",
+      "parameters": {
+        "format":"N"
+      }
+    }
+  }
+}
