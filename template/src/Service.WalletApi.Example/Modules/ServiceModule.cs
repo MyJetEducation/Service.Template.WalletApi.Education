@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using MyJetWallet.ApiSecurityManager.Autofac;
 using MyJetWallet.Sdk.RestApiTrace;
+using MyJetWallet.Sdk.Service;
 using MyJetWallet.Sdk.WalletApi.Wallets;
 
 namespace Service.WalletApi.Example.Modules
@@ -10,7 +11,7 @@ namespace Service.WalletApi.Example.Modules
         protected override void Load(ContainerBuilder builder)
         {
             // second parameter is null because we do not store api keys yet for wallet api
-            builder.RegisterEncryptionServiceClient("wallet-api", () => Program.Settings.MyNoSqlWriterUrl);
+            builder.RegisterEncryptionServiceClient(ApplicationEnvironment.AppName, () => Program.Settings.MyNoSqlWriterUrl);
 
             if (Program.Settings.EnableApiTrace)
             {
