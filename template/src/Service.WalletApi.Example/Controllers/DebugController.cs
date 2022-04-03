@@ -25,21 +25,16 @@ namespace Service.WalletApi.Example.Controllers
         {
             _encryptionKeyStorage = encryptionKeyStorage;
         }
-
-        /// <summary>
-        /// Parse token
-        /// </summary>
-        /// <param name="token"></param>
-        /// <returns></returns>
-        [HttpPost("token")]
-        public async Task<IActionResult> ParseToken([FromBody] TokenDto request)
-        {
-            var (res, data) = await _encryptionKeyStorage.ParseToken(Program.Settings.SessionEncryptionKeyId, request.Token);
-
-            var json = JsonConvert.SerializeObject(data, Formatting.Indented);
-
-            return Ok($"Result: {res}.\nData:\n{json}");
-        }
+        
+        // [HttpPost("token")]
+        // public async Task<IActionResult> ParseToken([FromBody] TokenDto request)
+        // {
+        //     var (res, data) = await _encryptionKeyStorage.ParseToken(Program.Settings.SessionEncryptionApiKeyId, request.Token);
+        //
+        //     var json = JsonConvert.SerializeObject(data, Formatting.Indented);
+        //
+        //     return Ok($"Result: {res}.\nData:\n{json}");
+        // }
 
         [HttpGet("hello")]
         public IActionResult HelloWorld()
@@ -48,22 +43,12 @@ namespace Service.WalletApi.Example.Controllers
         }
 
 
-        [HttpGet("test")]
+        [HttpGet("who")]
         [Authorize()]
         public IActionResult TestAuth()
         {
             var traderId = this.GetClientId();
-            return Ok($"Hello {traderId}");
-        }
-
-        [HttpGet("who")]
-        [Authorize()]
-        public IActionResult Who()
-        {
-            var clientId = this.GetClientId();
-            var brokerId = this.GetBrokerId();
-            var brandId = this.GetBrandId();
-            return Ok(new JetClientIdentity(brokerId, brandId, clientId));
+            return Ok($"Hello, session is good");
         }
 
         [HttpPost("make-signature")]
@@ -97,6 +82,7 @@ namespace Service.WalletApi.Example.Controllers
         }
 
         [HttpGet("my-ip")]
+        [Authorize]
         public IActionResult GetMyApiAsync()
         {
             var ip = this.HttpContext.GetIp();
@@ -105,16 +91,6 @@ namespace Service.WalletApi.Example.Controllers
             var cf = HttpContext.Request.Headers.TryGetValue("CF-Connecting-IP", out var cfheader) ? cfheader.ToString() : "none";
             
             return Ok(new {IP = ip, XFF = xff, CF = cf});
-        }
-
-        [HttpGet("verified-email-only")]        
-        [WalletAuthorize]
-        public IActionResult WhoWithVerifiedEmail()
-        {
-            var clientId = this.GetClientId();
-            var brokerId = this.GetBrokerId();
-            var brandId = this.GetBrandId();
-            return Ok(new JetClientIdentity(brokerId, brandId, clientId));
         }
     }
 }

@@ -25,9 +25,6 @@ namespace Service.WalletApi.Example.Settings
 
         [YamlProperty("WalletApi.SessionEncryptionKeyId")]
         public string SessionEncryptionKeyId { get; set; }
-        
-        [YamlProperty("WalletApi.ClientProfileGrpcServiceUrl")]
-        public string ClientProfileGrpcServiceUrl { get; set; }
 
         [YamlProperty("WalletApi.MyNoSqlWriterUrl")]
         public string MyNoSqlWriterUrl { get; set; }

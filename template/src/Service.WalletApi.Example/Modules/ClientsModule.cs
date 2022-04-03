@@ -11,10 +11,7 @@ namespace Service.WalletApi.Example.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-			var myNoSqlClient = builder.CreateNoSqlClient(() => Program.Settings.MyNoSqlReaderHostPort);
-            builder.RegisterClientProfileClients(myNoSqlClient, Program.Settings.ClientProfileGrpcServiceUrl);
-
-            RegisterAuthServices(builder);
+			RegisterAuthServices(builder);
         }
 
 		protected void RegisterAuthServices(ContainerBuilder builder)

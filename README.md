@@ -64,7 +64,7 @@ By default application do not support SSL and HTTPS. Client for GRPS should use 
 |SETTINGS_URL| Url to settings yaml. If utl not specified then settings will be readed from file `.myjetwallet`         | no       |null|
 |ConsoleOutputLogLevel| Print log to console from this level (Debug,Information,Warning,Error,Verbose)                           | no       |null|
 |HOSTNAME| Will be used as the `host-name` key in the logs. If not specified, the OS user name will be used instaed | no       |`null`|
-|SESSION__KEY| key to decode session **JUST TO LOCAL RUN**                                                              | yes      ||
+|SESSION_ENCODING_KEY| key to decode session **JUST TO LOCAL RUN**                                                              | yes      ||
  
 
 
